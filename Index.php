@@ -133,7 +133,7 @@ include_once("connection.php");
               <i class="fas fa-gem me-3"></i>Ldatttz Company
             </h6>
             <p>
-            We will bring you the best experience. Thank you for using our service.
+            We will bring you the best experiences. Thank you for using our service.
             </p>
           </div>
           <!-- Grid column -->
