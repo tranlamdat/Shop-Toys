@@ -10,10 +10,10 @@
 </script>
 <?php
 if (isset($_POST['btnRegister'])) {
+    $id = $_POST['txtUserID'];
     $us = $_POST['txtUsername'];
     $pass1 = $_POST['txtPass1'];
     $pass2 = $_POST['txtPass2'];
-    $fullname = $_POST['txtFullname'];
     $email = $_POST['txtEmail'];
     $address = $_POST['txtAddress'];
     $tel = $_POST['txtTel'];
@@ -27,7 +27,7 @@ if (isset($_POST['btnRegister'])) {
     $year = $_POST['slYear'];
 
     $err = "";
-    if ($us == "" || $pass1 == "" || $pass2 == "" || $fullname == "" || $email == "" || $address == "" || !isset($sex)) {
+    if ($us == "" || $pass1 == "" || $pass2 == "" || $email == "" || $address == "" || !isset($sex)) {
         $err .= "<li> Enter fileds with marks(*), please</li>";
     }
     if (strlen($pass1) <= 5) {
@@ -53,12 +53,11 @@ if (isset($_POST['btnRegister'])) {
     } else {
         include_once("connection.php");
         $pass = md5($pass1);
-        $sq = "SELECT * FROM customer WHERE Username = '$us' OR email = '$email'";
-        $res = mysqli_query($conn, $sq);
-        if (mysqli_num_rows($res) == 0) {
-            mysqli_query($conn, "INSERT INTO customer (Username, Password, CustName, gender, Address, telephone, email, CusDate, CusMonth, CusYear, SSN, ActiveCode, state)
-                                    VALUES ('$us', '$pass', '$fullname', '$sex', '$address', '$tel', '$email', '$date', '$month', '$year', '', '', 0)")
-                or die(mysqli_error($conn));
+        $sq = "SELECT * FROM User WHERE UserName = '$us' OR Email = '$email'";
+        $res = pg_query($conn, $sq);
+        if (pg_num_rows($res) == 0) {
+            pg_query($conn, "INSERT INTO User (UserID, Username, Pass, Email, Address, Telephone, Gender, CusDate, CusMonth, CusYear, Roles)
+                                    VALUES ('$id', $us', '$pass', '$email', '$address', '$tel', '$date', '$month', '$year', '', '', 0)");
             echo "You have registered successfully";
         } else {
             echo "Username or email already exists";
@@ -69,6 +68,13 @@ if (isset($_POST['btnRegister'])) {
 <div class="container">
     <h2>Member Registration</h2>
     <form id="form1" name="form1" method="post" action="" class="form-horizontal" role="form">
+    <div class="form-group">
+
+<label for="txtTen" class="col-sm-2 control-label">UserID(*): </label>
+<div class="col-sm-10">
+    <input type="text" name="txtUserID" id="txtUserID" class="form-control" placeholder="UserID" value="" />
+</div>
+</div>
         <div class="form-group">
 
             <label for="txtTen" class="col-sm-2 control-label">Username(*): </label>
@@ -88,13 +94,6 @@ if (isset($_POST['btnRegister'])) {
             <label for="" class="col-sm-2 control-label">Confirm Password(*): </label>
             <div class="col-sm-10">
                 <input type="password" name="txtPass2" id="txtPass2" class="form-control" placeholder="Confirm your Password" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="lblFullName" class="col-sm-2 control-label">Full name(*): </label>
-            <div class="col-sm-10">
-                <input type="text" name="txtFullname" id="txtFullname" value="" class="form-control" placeholder="Enter Fullname" />
             </div>
         </div>
 
