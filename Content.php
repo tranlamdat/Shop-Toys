@@ -88,7 +88,7 @@ include_once("connection.php");
 <section id="center_content">
 <div class="row heading">
         <div class="title col-md-12">
-            <h1>Moon Cakes Shop Listings</h1>
+            <h1>Welcome</h1>
         </div>
     </div>
     <div class="d-flex justify-content-center mt-50 mb-50">
