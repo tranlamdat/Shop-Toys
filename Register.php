@@ -13,9 +13,7 @@ if (isset($_POST['btnRegister'])) {
     $id = $_POST['txtUserID'];
     $us = $_POST['txtUsername'];
     $pass1 = $_POST['txtPass1'];
-    $pass2 = $_POST['txtPass2'];
     $email = $_POST['txtEmail'];
-
     $tel = $_POST['txtTel'];
 
     if (isset($_POST['grpRender'])) {
@@ -32,9 +30,6 @@ if (isset($_POST['btnRegister'])) {
     }
     if (strlen($pass1) <= 5) {
         $err .= "<li>Password must be greater than 5 chars</li>";
-    }
-    if ($pass1 != $pass2) {
-        $err .= "<li> Password and confirm password must be the same</li>";
     }
     if (strlen( $email) <= 5) {
         $err .= "<li>Enter your email, please</li>";
@@ -84,13 +79,6 @@ if (isset($_POST['btnRegister'])) {
             <label for="" class="col-sm-2 control-label">Password(*): </label>
             <div class="col-sm-10">
                 <input type="password" name="txtPass1" id="txtPass1" class="form-control" placeholder="Password" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="" class="col-sm-2 control-label">Confirm Password(*): </label>
-            <div class="col-sm-10">
-                <input type="password" name="txtPass2" id="txtPass2" class="form-control" placeholder="Confirm your Password" />
             </div>
         </div>
 

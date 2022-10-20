@@ -64,10 +64,10 @@ include_once("connection.php");
         include_once("Register.php");
       } elseif ($page == "login") {
         include_once("LoginJS.php");
-      } elseif ($page == "category_management") {
-        include_once("Category_Management.php");
-      } elseif ($page == "product_management") {
-        include_once("Product_Management.php");
+      } elseif ($page == "category") {
+        include_once("Category.php");
+      } elseif ($page == "product") {
+        include_once("Product.php");
       } elseif ($page == "add_category") {
         include_once("Add_Category.php");
       } elseif ($page == "add_product") {
