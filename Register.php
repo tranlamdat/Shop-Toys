@@ -54,9 +54,9 @@ if (isset($_POST['btnRegister'])) {
         include_once("connection.php");
         $pass = md5($pass1);
         $sq = "SELECT * FROM User WHERE UserName = '$us' OR Email = '$email'";
-        $res = pg_query($conn, $sq);
+        $res = pg_query($Connect, $sq);
         if (pg_num_rows($res) == 0) {
-            pg_query($conn, "INSERT INTO User (UserID, Username, Pass, Email, Address, Telephone, Gender, CusDate, CusMonth, CusYear, Roles)
+            pg_query($Connect, "INSERT INTO User (UserID, Username, Pass, Email, Address, Telephone, Gender, CusDate, CusMonth, CusYear, Roles)
                                     VALUES ('$id', $us', '$pass', '$email', '$address', '$tel', '$date', '$month', '$year', '', '', 0)");
             echo "You have registered successfully";
         } else {

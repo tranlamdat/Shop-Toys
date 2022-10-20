@@ -28,14 +28,14 @@
 		{
 			include_once("connection.php");
 			$pass = md5($pa);
-			$res = mysqli_query($conn, "SELECT Username, Password, state FROM Customer WHERE Username='$us' AND Password='$pass'")
-			or die(mysqli_error($conn));
-			$row = mysqli_fetch_array($res,MYSQLI_ASSOC);
-			if(mysqli_num_rows($res)==1)
+			$res = pg_query($Connect, "SELECT Username, Pass, state FROM User WHERE Username='$us' AND Pass='$pass'")
+			or die("");
+			$row = pg_fetch_array($res);
+			if(pg_num_rows($res)==1)
 			{
 				$_SESSION["us"] = $us;
 				$_SESSION["admin"] = $row["state"];
-				echo '<meta http-equiv="refresh" content="0;URL=Mid-Autum-Cakes.php"/>';
+				echo '<meta http-equiv="refresh" content="0;URL=index.php"/>';
 			}
 			else
 			{
