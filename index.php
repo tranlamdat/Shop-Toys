@@ -21,14 +21,14 @@ include_once("connection.php");
 <body>
   <div class="container-fluid">
     <header id="header">
-      <div id="logo"><img src="images/logo moon cakes.jpg" width="90" height="66" alt="Moon Cakes" /></div>
+      <div id="logo"><img src="images/logo moon cakes.jpg" width="90" height="66" alt="Shop Toys" /></div>
       <nav id="menu_top">
         <ul class="level1">
-          <li><a href="Mid-Autum-Cakes.php">
+          <li><a href="index.php">
               <h5>Home</h5>
             </a></li>
-          <li><a href="?page=category_management">
-              <h5>Management Category</h5>
+          <li><a href="?page=category">
+              <h5>Category</h5>
             </a>
             <?php
 						if (isset($_SESSION['us']) && $_SESSION['us'] != "") {
@@ -50,7 +50,7 @@ include_once("connection.php");
 
 
           <li><a href="?page=product_management">
-              <h5>Management Product</h5>
+              <h5>Product</h5>
             </a>
           </li>
 

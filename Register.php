@@ -15,7 +15,7 @@ if (isset($_POST['btnRegister'])) {
     $pass1 = $_POST['txtPass1'];
     $pass2 = $_POST['txtPass2'];
     $email = $_POST['txtEmail'];
-    $address = $_POST['txtAddress'];
+
     $tel = $_POST['txtTel'];
 
     if (isset($_POST['grpRender'])) {
@@ -27,7 +27,7 @@ if (isset($_POST['btnRegister'])) {
     $year = $_POST['slYear'];
 
     $err = "";
-    if ($us == "" || $pass1 == "" || $pass2 == "" || $email == "" || $address == "" || !isset($sex)) {
+    if ($us == "" || $pass1 == "" || $pass2 == "" || $email == "" || !isset($sex)) {
         $err .= "<li> Enter fileds with marks(*), please</li>";
     }
     if (strlen($pass1) <= 5) {
@@ -38,9 +38,6 @@ if (isset($_POST['btnRegister'])) {
     }
     if (strlen( $email) <= 5) {
         $err .= "<li>Enter your email, please</li>";
-    }
-    if (strlen( $address) <= 5) {
-        $err .= "<li>Enter your address, please</li>";
     }
     if (strlen( $tel) <= 5) {
         $err .= "<li>Enter your telephne, please</li>";
@@ -56,8 +53,8 @@ if (isset($_POST['btnRegister'])) {
         $sq = "SELECT * FROM User WHERE UserName = '$us' OR Email = '$email'";
         $res = pg_query($Connect, $sq);
         if (pg_num_rows($res) == 0) {
-            pg_query($Connect, "INSERT INTO User (UserID, Username, Pass, Email, Address, Telephone, Gender, CusDate, CusMonth, CusYear, Roles)
-                                    VALUES ('$id', $us', '$pass', '$email', '$address', '$tel', '$date', '$month', '$year', '', '', 0)");
+            pg_query($Connect, "INSERT INTO User (UserID, Username, Pass, Email, Telephone, Gender, CusDate, CusMonth, CusYear, Roles)
+                                    VALUES ('$id', $us', '$pass', '$email', '$tel', '$date', '$month', '$year', '', '', 0)");
             echo "You have registered successfully";
         } else {
             echo "Username or email already exists";
@@ -101,13 +98,6 @@ if (isset($_POST['btnRegister'])) {
             <label for="lblEmail" class="col-sm-2 control-label">Email(*): </label>
             <div class="col-sm-10">
                 <input type="text" name="txtEmail" id="txtEmail" value="" class="form-control" placeholder="Email" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="lblDiaChi" class="col-sm-2 control-label">Address(*): </label>
-            <div class="col-sm-10">
-                <input type="text" name="txtAddress" id="txtAddress" value="" class="form-control" placeholder="Address" />
             </div>
         </div>
 

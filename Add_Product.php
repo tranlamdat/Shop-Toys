@@ -3,27 +3,27 @@
     <script type="text/javascript" src="scripts/ckeditor/ckeditor.js"></script>
     <?php
 	include_once("connection.php");
-	function bind_Category_List($conn)
+	function bind_Category_List($Connect)
 	{
 		$sqlstring = "SELECT Cat_ID, Cat_Name from category";
-		$result = mysqli_query($conn, $sqlstring);
+		$result = pg_query($Connect, $sqlstring);
 		echo "<select name='CategoryList' class='form-control'>
 					<option value='0'>Choose category</option>";
-		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+		while ($row = pg_fetch_array($result)) {
 			echo "<option value='" . $row['Cat_ID'] . "'>" . $row['Cat_Name'] . "</option>";
 		}
 		echo "</select>";
 	}
 	if(isset($_POST["btnAdd"]))
 	{
-		$id = $_POST["txtID"];
-		$proname = $_POST["txtName"];
-		$short = $_POST["txtShort"];
-		$detail = $_POST["txtDetail"];
+		$id = $_POST["txtProductID"];
+		$proname = $_POST["txtProductName"];
+		$costprice = $_POST["txtCost price"];
+		$sellingprice = $_POST["txtSelling "];
 		$price = $_POST["txtPrice"];
 		$qty = $_POST["txtQty"];
 		$pic = $_FILES["txtImage"];
-		$category = $_POST["CategoryList"];
+		$categoryid = $_POST["CategoryID"];
 		$err = "";
 
 		if(trim($id) == "")
