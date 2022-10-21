@@ -10,7 +10,6 @@
 </script>
 <?php
 if (isset($_POST['btnRegister'])) {
-    $id = $_POST['txtUserID'];
     $us = $_POST['txtUsername'];
     $pass1 = $_POST['txtPass1'];
     $email = $_POST['txtEmail'];
@@ -48,8 +47,8 @@ if (isset($_POST['btnRegister'])) {
         $sq = "SELECT * FROM user WHERE UserName = '$us' OR Email = '$email'";
         $res = pg_query($Connect, $sq);
         if (pg_num_rows($res) == 0) {
-            pg_query($Connect, "INSERT INTO user (UserID, Username, Pass, Email, Telephone, Gender, CusDay, CusMonth, CusYear, Roles)
-                                    VALUES ('$id', '$us', '$pass', '$email', '$tel', '$day', '$month', '$year', 0)");
+            pg_query($Connect, "INSERT INTO user (Username, Pass, Email, Telephone, Gender, CusDay, CusMonth, CusYear, Roles)
+                                    VALUES ('$us', '$pass', '$email', '$tel', '$day', '$month', '$year', 0)");
             echo "You have registered successfully";
         } else {
             echo "Username or email already exists";
