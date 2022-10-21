@@ -20,7 +20,7 @@ if (isset($_POST['btnRegister'])) {
         $sex = $_POST['grpRender'];
     }
 
-    $date = $_POST['slDate'];
+    $day = $_POST['slDay'];
     $month = $_POST['slMonth'];
     $year = $_POST['slYear'];
 
@@ -48,8 +48,8 @@ if (isset($_POST['btnRegister'])) {
         $sq = "SELECT * FROM user WHERE UserName = '$us' OR Email = '$email'";
         $res = pg_query($Connect, $sq);
         if (pg_num_rows($res) == 0) {
-            pg_query($Connect, "INSERT INTO user (UserID, Username, Pass, Email, Telephone, Gender, CusDate, CusMonth, CusYear, Roles)
-                                    VALUES ('$id', $us', '$pass', '$email', '$tel', '$date', '$month', '$year', 0)");
+            pg_query($Connect, "INSERT INTO user (UserID, Username, Pass, Email, Telephone, Gender, CusDay, CusMonth, CusYear, Roles)
+                                    VALUES ('$id', '$us', '$pass', '$email', '$tel', '$day', '$month', '$year', 0)");
             echo "You have registered successfully";
         } else {
             echo "Username or email already exists";
@@ -114,7 +114,7 @@ if (isset($_POST['btnRegister'])) {
             <div class="col-sm-10 input-group">
                 <span class="input-group-btn">
                     <select name="slDate" id="slDate" class="form-control">
-                        <option value="0">Choose Date</option>
+                        <option value="0">Choose Day</option>
                         <?php
                         for ($i = 1; $i <= 31; $i++) {
                             echo "<option value='" . $i . "'>" . $i . "</option>";
