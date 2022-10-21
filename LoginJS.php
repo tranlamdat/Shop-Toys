@@ -28,7 +28,7 @@
 		{
 			include_once("connection.php");
 			$pass = md5($pa);
-			$res = pg_query($Connect, "SELECT Username, Pass, state FROM User WHERE Username='$us' AND Pass='$pass'")
+			$res = pg_query($Connect, "SELECT UserName, Pass, Roles FROM user WHERE UserName='$us' AND Pass='$pass'")
 			or die("");
 			$row = pg_fetch_array($res);
 			if(pg_num_rows($res)==1)

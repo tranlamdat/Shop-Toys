@@ -49,7 +49,7 @@ if (isset($_POST['btnRegister'])) {
         $res = pg_query($Connect, $sq);
         if (pg_num_rows($res) == 0) {
             pg_query($Connect, "INSERT INTO user (UserID, Username, Pass, Email, Telephone, Gender, CusDate, CusMonth, CusYear, Roles)
-                                    VALUES ('$id', $us', '$pass', '$email', '$tel', '$date', '$month', '$year', '', '', 0)");
+                                    VALUES ('$id', $us', '$pass', '$email', '$tel', '$date', '$month', '$year', 0)");
             echo "You have registered successfully";
         } else {
             echo "Username or email already exists";
