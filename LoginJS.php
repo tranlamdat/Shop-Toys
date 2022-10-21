@@ -27,14 +27,14 @@
 		else
 		{
 			include_once("connection.php");
-			$pass = md5($pa);
-			$res = pg_query($Connect, "SELECT UserName, Pass, Roles FROM user WHERE UserName='$us' AND Pass='$pass'")
+			$pass1 = md5($pa);
+			$res = pg_query($Connect, "SELECT UserName, Pass, Roles FROM user WHERE UserName='$us' AND Pass='$pass1'")
 			or die("");
 			$row = pg_fetch_array($res);
 			if(pg_num_rows($res)==1)
 			{
 				$_SESSION["us"] = $us;
-				$_SESSION["admin"] = $row["state"];
+				$_SESSION["admin"] = $row["Roles"];
 				echo '<meta http-equiv="refresh" content="0;URL=index.php"/>';
 			}
 			else

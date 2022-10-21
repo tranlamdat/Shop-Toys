@@ -24,7 +24,7 @@ if (isset($_POST['btnRegister'])) {
     $year = $_POST['slYear'];
 
     $err = "";
-    if ($us == "" || $pass1 == "" || $pass2 == "" || $email == "" || !isset($sex)) {
+    if ($us == "" || $pass1 == "" || $email == "" || !isset($sex)) {
         $err .= "<li> Enter fileds with marks(*), please</li>";
     }
     if (strlen($pass1) <= 5) {
@@ -48,7 +48,7 @@ if (isset($_POST['btnRegister'])) {
         $res = pg_query($Connect, $sq);
         if (pg_num_rows($res) == 0) {
             pg_query($Connect, "INSERT INTO user (Username, Pass, Email, Telephone, Gender, CusDay, CusMonth, CusYear, Roles)
-                                    VALUES ('$us', '$pass', '$email', '$tel', '$day', '$month', '$year', 1)");
+                                    VALUES ('$us', '$pass1', '$email', '$tel', '$sex', $day', '$month', '$year', 1)");
             echo "You have registered successfully";
         } else {
             echo "Username or email already exists";
